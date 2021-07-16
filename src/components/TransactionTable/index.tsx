@@ -1,11 +1,25 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { Container } from "./styles";
 
+
+interface Transaction {
+    id: number;
+    title: string;
+    amount: number;
+    type: string; 
+    category: string;
+    createdAt: string;
+}
+
+
 export function TransactionTable() {
+
+    const [transactions, setTransactions] = useState<Transaction[]>([])
+
     useEffect(() => {
         api.get('transactions')
-            .then(response => console.log(response.data))
+            .then(response => setTransactions(response.data.transactions))
     }, [])
 
 
@@ -22,18 +36,14 @@ export function TransactionTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Desenvolvimento de website</td>
-                        <td className="deposit">R$12.000</td>
-                        <td>Desenvolvimento</td>
-                        <td>13/07/2021</td>
+                  {transactions.map( transaction => (
+                    <tr key={transaction.id}>
+                        <td>{transaction.title}</td>
+                        <td className={transaction.type}>{transaction.amount}</td>
+                        <td>{transaction.category}</td>
+                        <td>{transaction.createdAt}</td>
                     </tr>
-                    <tr>
-                        <td>Aluguel</td>
-                        <td className="withdraw">R$1.000</td>
-                        <td>Casa</td>
-                        <td>13/07/2021</td>
-                    </tr>
+                  ))}
                 </tbody>
             </table>
         </Container>
