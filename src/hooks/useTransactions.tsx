@@ -1,13 +1,12 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import { api } from "../services/api";
-
+import { v4 as uuid } from 'uuid';
 interface Transaction {
-    id: number;
+    id: string;
     title: string;
     amount: number;
     type: string; 
     category: string;
-    createdAt: string;
+    createdAt: Date;
 }
 
 interface TransactionsProviderProps {
@@ -37,22 +36,32 @@ export function TransactionsProvider ({children}: TransactionsProviderProps) {
     
     const [transactions, setTransactions] = useState<Transaction[]>([])
 
+
     useEffect(() => {
-        api.get('transactions')
-            .then(response => setTransactions(response.data.transactions))
-    }, []);
+        const returnURL =  localStorage.getItem('transactions');
+        if (returnURL) {
+            const data = JSON.parse(returnURL)
+            setTransactions(data)
+        }
+    }, [])
 
     async function createTransaction(transactionInput: TransactionInput) {
-        const response = await api.post('/transactions', {
-            ...transactionInput,
-            createdAt: new Date(),
-        });
-        const { transaction } = response.data
+
+        const transaction = {...transactionInput, createdAt:new Date() , id: uuid()}
+
 
         setTransactions([
             ...transactions,
             transaction,
         ]);
+
+        localStorage.setItem('transactions', JSON.stringify(
+            [
+                ...transactions,
+                transaction,
+            ]
+        ));
+
     }
 
     return (
