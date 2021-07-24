@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    margin-top:4rem;
+    margin-top:1rem;
 
     table {
         width:100%;
@@ -35,4 +35,15 @@ export const Container = styled.div`
             }
         }
     }
+`
+
+export const ToggleButton = styled.button`
+    margin-bottom: 10px;
+    font-size:1rem;
+    color:#fff;
+    background: var(--blue-light);
+    border:0;
+    padding: 0 1rem;
+    border-radius:0.25rem;
+    height:2rem;
 `
