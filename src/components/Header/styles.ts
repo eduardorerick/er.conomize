@@ -14,8 +14,12 @@ export const Content = styled.div`
     display:flex;
     align-items: center;
     justify-content: space-between;
+    
+    > div {
+        display: flex;
+        gap:10px;
 
-    button {
+        button {
         font-size:1rem;
         color:#fff;
         background: var(--blue-light);
@@ -29,5 +33,7 @@ export const Content = styled.div`
         &:hover {
             filter:contrast(1.2)
         }
+    }
+
     }
 `

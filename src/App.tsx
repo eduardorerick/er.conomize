@@ -8,7 +8,20 @@ import { TransactionsProvider } from "./hooks/useTransactions";
 
 Modal.setAppElement('#root');
 
+
+
 export function App() {
+
+  
+//   useEffect(() => {
+//     const response = localStorage.getItem('transactions')
+
+//     if(response) {
+//         console.log(JSON.parse(response))
+//     }
+// }, []);
+
+  
   const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] = useState(false);
 
   function handleOpenNewTransactionModal() {

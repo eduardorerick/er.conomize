@@ -33,6 +33,18 @@ export function Summary () {
 
     return (
         <Container>
+            <div className={summary.total >= 0 ? 'highlight-background-positive' : 'highlight-background-negative'}>
+                <header>
+                    <p>Total</p>
+                    <img src={totalImg} alt='Total'/>
+                </header>
+                <strong>
+                    {new Intl.NumberFormat('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL',
+                    }).format(summary.total)}
+                </strong>
+            </div>
             <div>
                 <header>
                     <p>Entradas</p>
@@ -57,18 +69,7 @@ export function Summary () {
                     }).format(summary.withdraws)}
                 </strong>
             </div>
-            <div className="highlight-background">
-                <header>
-                    <p>Total</p>
-                    <img src={totalImg} alt='Total'/>
-                </header>
-                <strong>
-                    {new Intl.NumberFormat('pt-BR', {
-                        style: 'currency',
-                        currency: 'BRL',
-                    }).format(summary.total)}
-                </strong>
-            </div>
+            
         </Container>
     )
 }
