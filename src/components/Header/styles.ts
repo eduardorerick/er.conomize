@@ -8,8 +8,6 @@ export const Container = styled.header`
 export const Content = styled.div`
     max-width:1120px;
     margin: 0 auto;
-    
-
     padding: 2rem 1rem 10rem;
     display:flex;
     align-items: center;
@@ -18,7 +16,7 @@ export const Content = styled.div`
     > div {
         display: flex;
         gap:10px;
-
+        
         button {
         font-size:1rem;
         color:#fff;
@@ -35,5 +33,11 @@ export const Content = styled.div`
         }
     }
 
+    }
+
+    @media screen and (max-width:720px) {
+        flex-direction:column;
+        align-items: center;
+        justify-content: center;
     }
 `

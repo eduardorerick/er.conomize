@@ -36,4 +36,9 @@ export const Container = styled.div`
             color:#fff;
         }
     }
+
+    @media screen and (max-width:720px) {
+        display:flex;
+        flex-direction: column;
+    }
 `

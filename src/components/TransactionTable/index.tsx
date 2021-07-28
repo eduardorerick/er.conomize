@@ -51,13 +51,15 @@ export function TransactionTable() {
         <Container>
           <ToggleButton onClick={handleToggleChart}>{toggleChart? 'Mostrar lista' : 'Mostrar gráfico'}</ToggleButton>
           {toggleChart ? (
+          <div className="chart-content">
             <LineChart width={1080} height={300} data={data} margin={{ top: -10, right: 20, bottom: 25, left: 0 }}>
-            <Line type="monotone" dataKey='total' stroke={summary.total > 0 ? "#03a83a":"#940000"} />
-            <CartesianGrid stroke="#3010be" strokeDasharray="5 5" />
-            <XAxis dataKey="title" />
-            <YAxis />
-            <Tooltip />
-          </LineChart>
+              <Line type="monotone" dataKey='total' stroke={summary.total > 0 ? "#03a83a":"#940000"} />
+              <CartesianGrid stroke="#3010be" strokeDasharray="5 5" />
+              <XAxis dataKey="title" />
+              <YAxis />
+              <Tooltip />
+            </LineChart>
+          </div>
           ): (
             <table>
             <thead>
